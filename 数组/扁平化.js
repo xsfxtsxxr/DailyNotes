@@ -11,7 +11,7 @@ function flat2 (arr) {
 }
 // console.log(flat2(arr))
 
-// 第三种
+// 第三种 利用递归执行
 Array.prototype.flat = function () {
   return [].concat(...this.map(item => Array.isArray(item) ? item.flat() : [item]))
 }
@@ -22,7 +22,7 @@ const sort = (a, b) => a - b
 
 // console.log(arr.flat().uique().sort(sort))
 
-// 第四种
+// 第四种 利用while循环
 function flatten (arr) {
   while (arr.some(item => Array.isArray(item))) {
     arr = [].concat(...arr)

@@ -1,9 +1,11 @@
+// await会跳出当前async函数执行后面的同步代码
+
 console.log('start')
 
 let p1 = new Promise((resolve, reject) => {
   setTimeout(() => {
     resolve('promise resolved')
-  }, 3000);
+  }, 3000)
 })
 
 async function foo () {
@@ -18,5 +20,3 @@ async function foo () {
 foo()
 
 console.log('last')
-
-// await会跳出当前async函数执行后面的同步代码
