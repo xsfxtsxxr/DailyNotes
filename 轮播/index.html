@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .wrapped {
+        position: relative;
+        width: 200px;
+        height: 100px;
+        margin: 100px auto 0;
+        border: 1px solid #ddd;
+        overflow: hidden;
+      }
+      ul {
+        position: relative;
+        width: 9999em;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        list-style: none;
+      }
+      li {
+        float: left;
+        width: 200px;
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+      }
+      .item1 {
+        background-color: bisque;
+      }
+      .item2 {
+        background-color: blueviolet;
+      }
+      .item3 {
+        background-color: seagreen;
+      }
+      .item4 {
+        background-color: rosybrown;
+      }
+      .btn-group {
+        margin-top: 20px;
+        text-align: center;
+      }
+      .btn {
+        margin: 0 8px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapped">
+      <ul id="carousel-ul">
+        <li class="carousel-item item4">4</li>
+        <li class="carousel-item item1">1</li>
+        <li class="carousel-item item2">2</li>
+        <li class="carousel-item item3">3</li>
+        <li class="carousel-item item4">4</li>
+        <li class="carousel-item item1">1</li>
+      </ul>
+    </div>
+    <div class="btn-group">
+      <span class="btn" id="prev">prev</span>
+      <span class="btn" id="next">next</span>
+    </div>
+    <script>
+      let prev = document.getElementById('prev')
+      let next = document.getElementById('next')
+      let ul = document.getElementById('carousel-ul')
+      let panels = Array.from(document.querySelectorAll('.carousel-item'))
+
+      ul.style.left = '-200px'
+      let index = 1
+
+      prev.addEventListener('click', function () {
+        index--
+        animation(200)
+        if (index === 0) {
+          setTimeout(() => {
+            ul.style.transition = '0s'
+            let distance = -4 * 200
+            ul.style.left = parseInt(ul.style.left) + distance + 'px'
+          }, 600)
+          index = 4
+        }
+      })
+
+      next.addEventListener('click', function () {
+        index++
+        animation(-200)
+        if (index === panels.length - 1) {
+          setTimeout(() => {
+            ul.style.transition = '0s'
+            let distance = 4 * 200
+            ul.style.left = parseInt(ul.style.left) + distance + 'px'
+          }, 600)
+          index = 1
+        }
+      })
+
+      function animation(width = 200) {
+        ul.style.transition = '0.5s'
+        // 初始化
+        ul.style.left || (ul.style.left = 0)
+        ul.style.left = parseInt(ul.style.left) + width + 'px'
+      }
+    </script>
+  </body>
+</html>

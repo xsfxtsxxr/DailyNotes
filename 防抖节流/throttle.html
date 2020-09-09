@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Throttle</title>
+    <style>
+      div {
+        height: 100px;
+        line-height: 100px;
+        background-color: slategrey;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="d1"></div>
+    <script>
+      function throttle2(fn, wait) {
+        let previous = 0
+        return function () {
+          const args = arguments
+          let now = Date.now()
+          if (now - previous > wait) {
+            fn.call(this, ...args)
+            previous = now
+          }
+        }
+      }
+
+      let d1 = document.getElementById('d1')
+
+      let count = 1
+      function fn() {
+        d1.innerHTML = count++
+      }
+
+      d1.onmousemove = throttle2(fn, 1000)
+    </script>
+  </body>
+</html>

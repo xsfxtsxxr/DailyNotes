@@ -4,18 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      div {
+        text-align: center;
+      }
+      img {
+        vertical-align: middle;
+      }
+    </style>
   </head>
   <body>
+    <div>
+      <input type="text" id="input" />
+      <span id="output"></span>
+    </div>
     <script>
-      Number.prototype.add = function (n) {
-        return this.valueOf() + n
-      }
-
-      Number.prototype.minus = function (n) {
-        return this.valueOf() - n
-      }
-
-      console.log((5).add(3).minus(2))
+      const newObj = new Proxy(
+        {},
+        {
+          get: function (target, key) {
+            return target[key]
+          },
+          set: function (target, key, value) {
+            target[key] = value
+            output.innerHTML = value + '哈哈'
+          },
+        }
+      )
+      input.addEventListener('input', function (e) {
+        newObj.text = e.target.value
+      })
     </script>
   </body>
 </html>
