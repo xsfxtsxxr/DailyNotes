@@ -7,9 +7,12 @@ const p = Promise.resolve();
   console.log('await end')
 })()
 
+console.log('waibu')
+
 p.then(() => {
   console.log('then1')
 }).then(() => {
   console.log('then2')
 })
 
+console.log('waibu2')

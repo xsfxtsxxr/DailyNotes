@@ -31,7 +31,7 @@ function debounce2 (fn, wait = 50) {
     }
 
     timer = setTimeout(() => {
-      timer = null
+      fn.call(this, ...args)
     }, wait)
   }
 }

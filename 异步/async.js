@@ -20,3 +20,5 @@ async function foo () {
 foo()
 
 console.log('last')
+
+// start -> foo start -> last -> promise resolved -> foo end

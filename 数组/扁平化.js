@@ -31,3 +31,13 @@ function flatten (arr) {
 }
 
 flatten(arr)
+
+// 第五中递归reduce
+var arrReduce = [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10]
+var flatReduce = function (arr) {
+  return arr.reduce(function (ret, cur, idx, arr) {
+    return ret.concat(Array.isArray(cur) ? flatReduce(cur) : cur)
+  }, [])
+}
+
+console.log(flatReduce(arrReduce))

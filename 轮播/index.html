@@ -76,6 +76,7 @@
 
       prev.addEventListener('click', function () {
         index--
+        console.log(index, ul.style.left)
         animation(200)
         if (index === 0) {
           setTimeout(() => {
@@ -89,6 +90,7 @@
 
       next.addEventListener('click', function () {
         index++
+        console.log(index, ul.style.left)
         animation(-200)
         if (index === panels.length - 1) {
           setTimeout(() => {
