@@ -6,7 +6,9 @@ function deepCopy (obj, findArr = []) {
   } else {
     findArr.push(obj)
     for (var key in obj) {
-      newObj[key] = typeof obj[key] === 'object' ? deepCopy(obj[key], findArr) : obj[key]
+      if (obj.hasOwnProperty(key)) {
+        newObj[key] = typeof obj[key] === 'object' ? deepCopy(obj[key], findArr) : obj[key]
+      }
     }
   }
   return newObj

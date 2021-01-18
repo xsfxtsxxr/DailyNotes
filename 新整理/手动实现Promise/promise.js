@@ -28,7 +28,7 @@ myPromise.prototype.then = function (onFullfilled, onRejected) {
   return new myPromise((resolve, reject) => {
     if (this.state === PENDING) {
       this.resolveCbs.push(onFullfilled)
-      this.resolveCbs.push(onRejected)
+      this.rejectedCbs.push(onRejected)
     }
     if (this.state === RESOLVED) {
       let x = onFullfilled(this.value)
