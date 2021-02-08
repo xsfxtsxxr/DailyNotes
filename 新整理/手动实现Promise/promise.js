@@ -16,7 +16,7 @@ function myPromise (exec) {
     if (this.state !== PENDING) return
     this.state = REJECTED
     this.value = reason
-    this.rejectedCbs.forEach(fn => fn(value))
+    this.rejectedCbs.forEach(fn => fn(reason))
   }
 
   exec(resolve.bind(this), reject.bind(this))
